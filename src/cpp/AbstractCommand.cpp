@@ -5,23 +5,28 @@ AbstractCommand::AbstractCommand()
 {
 }
 
-AbstractCommand::AbstractCommand(int x, int y)
-{
-	_x = x;
-	_y = y;
-}
-
 void AbstractCommand::printStatus()
 {
-	std::cout << "Virual function printStatus not implemented" << std::endl;
+	printNoImpl("printStatus");
 }
 
-int AbstractCommand::getY()
+exec_status AbstractCommand::execute()
 {
-	return _y;
+	printNoImpl("execute");
+	return EXEC_WARN;
 }
 
-int AbstractCommand::getX()
+void AbstractCommand::warning()
 {
-	return _x;
+	printNoImpl("warning");
+}
+
+void AbstractCommand::error()
+{
+	printNoImpl("error");
+}
+
+void AbstractCommand::printNoImpl(std::string fName)
+{
+	std::cout << "Virtual function '" << fName << "' not implemented" << std::endl;
 }

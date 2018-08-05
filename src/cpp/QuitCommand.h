@@ -1,12 +1,12 @@
-#ifndef HELPCOMMAND
-#define HELPCOMMAND
+#ifndef QUITCOMMAND
+#define QUITCOMMAND
 
 #include "AbstractCommand.h"
 
-class HelpCommand : public AbstractCommand
+class QuitCommand : public AbstractCommand
 {
 public:
-	HelpCommand();
+	QuitCommand();
 	void printStatus();
 	exec_status execute();
 private:

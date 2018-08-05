@@ -1,12 +1,7 @@
 #include <iostream>
 #include "HelpCommand.h"
 
-HelpCommand::HelpCommand() : AbstractCommand(0, 0)
-{
-
-}
-
-HelpCommand::HelpCommand(int x, int y) : AbstractCommand(x, y)
+HelpCommand::HelpCommand() : AbstractCommand()
 {
 
 }
@@ -14,4 +9,13 @@ HelpCommand::HelpCommand(int x, int y) : AbstractCommand(x, y)
 void HelpCommand::printStatus()
 {
 	std::cout << "HelpCommand printStatus" << std::endl;
+}
+
+exec_status HelpCommand::execute ()
+{
+	std::cout << 	"This is the help dialog\n"
+			"Press h for help\n"
+			"Press q to quit" 
+			<< std::endl;
+	return EXEC_CONT;
 }
