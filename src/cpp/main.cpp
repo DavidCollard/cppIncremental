@@ -1,27 +1,26 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
-#include <string.h>
+#include <string>
 #include <vector>
+#include <memory>
 
 #include "main.h"
-//#include "AbstractCommand.h"
+#include "ProcessInput.h"
 
 int main()
 {
-	std::cout << "hello world" << std::endl;
-
-	AbstractCommand* cmd = processInput("test");
-	std::cout << cmd->getX() << ":" << cmd->getY() << std::endl;
+	std::string input;
+	bool quit = false;
+	while (!quit)
+	{
+		std::cin >> input;
+		AbstractCommand* cmd = processInput(input);
+		cmd->printStatus();
+		if (input[0] == 'a')
+			quit = true;
+	}
 
 	return 0;
 }
-
-AbstractCommand* processInput(std::string input)
-{
-	AbstractCommand* cmd = new AbstractCommand(0, 0);
-	std::cout << input << std::endl;
-	return cmd;
-}
-
 
