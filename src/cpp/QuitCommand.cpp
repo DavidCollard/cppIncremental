@@ -11,7 +11,8 @@ void QuitCommand::printStatus()
 	std::cout << "QuitCommand printStatus" << std::endl;
 }
 
-exec_status QuitCommand::execute ()
+exec_status QuitCommand::execute()
 {
 	return EXEC_QUIT;
 }
+

@@ -13,7 +13,13 @@ void AbstractCommand::printStatus()
 exec_status AbstractCommand::execute()
 {
 	printNoImpl("execute");
-	return EXEC_WARN;
+	return EXEC_NIMP;
+}
+
+exec_status AbstractCommand::execute(Model* model)
+{
+	_model = model;
+	return this->execute();
 }
 
 void AbstractCommand::warning()

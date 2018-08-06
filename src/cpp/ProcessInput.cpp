@@ -6,6 +6,7 @@
 #include "ProcessInput.h"
 #include "AbstractCommand.h"
 #include "HelpCommand.h"
+#include "InsertCommand.h"
 #include "QuitCommand.h"
 #include "UnknownCommand.h"
 
@@ -18,6 +19,7 @@ AbstractCommand* processInput(std::string input)
 	std::smatch base_match;	
 
 	const std::regex help_regex(" *[Hh] *");
+	const std::regex insert_regex(" *[Ii] *([^\\s]+)");
 	const std::regex quit_regex(" *[Qq] *");
 	const std::regex int_test(reg_int);
 	const std::regex float_test(reg_float);
@@ -30,18 +32,11 @@ AbstractCommand* processInput(std::string input)
 	{
 		cmd = new QuitCommand();
 	}
-	/*
-	else if (std::regex_match(input, base_match, int_test))
+	else if (std::regex_match(input, base_match, insert_regex))
 	{
-		std::cout << "int input" << std::endl;
-		cmd = new UnknownCommand();
+		std::string code = base_match[1];
+		cmd = new InsertCommand(code);
 	}
-	else if (std::regex_match(input, base_match, float_test))
-	{
-		std::cout << "float input" << std::endl;
-		cmd = new UnknownCommand();
-	}
-	*/
 	else
 	{
 		cmd = new UnknownCommand();

@@ -1,6 +1,7 @@
 #ifndef HELPCOMMAND
 #define HELPCOMMAND
 
+#include "Model.h"
 #include "AbstractCommand.h"
 
 class HelpCommand : public AbstractCommand
