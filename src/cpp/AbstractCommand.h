@@ -7,6 +7,8 @@ enum exec_status
 	EXEC_QUIT, // quit
 	EXEC_ERR,  // error
 	EXEC_WARN, // warning
+	EXEC_PAUSE, // pause process
+	EXEC_WAIT, // waiting
 };
 
 class AbstractCommand

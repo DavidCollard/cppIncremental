@@ -1,6 +1,10 @@
 #ifndef MAIN
 #define MAIN
 
-int main();
+#include "AbstractCommand.h"
 
+int main();
+//void test(exec_status*);
+
+void test(exec_status*, exec_status*, std::mutex*, std::condition_variable*);
 #endif

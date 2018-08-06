@@ -7,7 +7,7 @@ $(BIN)%.o: $(SRC_PATH)%.cpp
 	$(CC) -c -o $@ $< $(GCC_OPT)
 
 main: $(BIN)main.o $(BIN)AbstractCommand.o $(BIN)HelpCommand.o $(BIN)QuitCommand.o $(BIN)UnknownCommand.o $(BIN)ProcessInput.o
-	$(CC) $(GCC_OPT) $^ -o main.exe
+	$(CC) $(GCC_OPT) $^ -o main.exe -lpthread
 
 run:
 	./main.exe
