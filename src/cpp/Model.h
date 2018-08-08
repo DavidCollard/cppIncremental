@@ -14,6 +14,8 @@ public:
 	void addNode(std::string, Node*);
 	bool removeNode(std::string);
 
+	const std::unordered_map<std::string, Node*>* getNodes();
+
 	std::string getName();
 
 private:

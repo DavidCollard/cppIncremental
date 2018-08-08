@@ -33,6 +33,11 @@ bool Model::removeNode(std::string key)
 	return true;
 }
 
+const std::unordered_map<std::string, Node*>* Model::getNodes()
+{
+	return &_nodes;
+}
+
 std::string Model::getName()
 {
 	return _name;
