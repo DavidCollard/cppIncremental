@@ -1,13 +1,17 @@
 CC=g++
 GCC_OPT = -O2 -Wall -Wextra -Werror -std=c++11
+GCC_LNK = -lpthread
 SRC_PATH = src/cpp/
 BIN = bin/
+
+SRCS=$(wildcard $(SRC_PATH)*.cpp)
+OBJS=$(patsubst %.cpp, %.o, $(notdir $(SRCS)))
 
 $(BIN)%.o: $(SRC_PATH)%.cpp
 	$(CC) -c -o $@ $< $(GCC_OPT)
 
-main: $(BIN)main.o $(BIN)AbstractCommand.o $(BIN)HelpCommand.o $(BIN)QuitCommand.o $(BIN)UnknownCommand.o $(BIN)InsertCommand.o $(BIN)PrintNodesCommand.o $(BIN)ProcessInput.o $(BIN)Model.o $(BIN)Node.o
-	$(CC) $(GCC_OPT) $^ -o main.exe -lpthread
+main: $(addprefix $(BIN), $(OBJS))
+	$(CC) $(GCC_OPT) $^ -o main.exe $(GCC_LNK)
 
 run:
 	./main.exe
