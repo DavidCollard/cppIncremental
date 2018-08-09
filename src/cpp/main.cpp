@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
-#include <vector>
 #include <memory>
 #include <thread>
 #include <mutex>
@@ -13,11 +12,13 @@
 #include "main.h"
 #include "ProcessInput.h"
 #include "Model.h"
+#include "Settings.h"
 
 int main()
 {
 	// init game model
 	Model* model = new Model();
+	Settings settings;
 
 	exec_status p_status = EXEC_CONT;
 	exec_status t_status = EXEC_CONT;
@@ -25,7 +26,7 @@ int main()
 	// spawn thread to automatically update game model
 	std::mutex m;
 	std::condition_variable cv;
-	std::thread game_thread (test, &p_status, &t_status, &m, &cv);
+	std::thread game_thread (test, &settings, &p_status, &t_status, &m, &cv);
 
 	// input loop
 	std::string input;
@@ -77,20 +78,16 @@ int main()
 	return 0;
 }
 
-#define MSEC_PER_TICK 200
-
-void test(exec_status* p_status, exec_status* t_status, std::mutex* m, std::condition_variable* cv)
+void test(Settings* settings, exec_status* p_status, exec_status* t_status, std::mutex* m, std::condition_variable* cv)
 {
 	std::unique_lock<std::mutex> lk(*m);
-		
+	
 	const int ticks_per_report = 10;
 	int curr_ticks = 0;
 
 	while(*p_status != EXEC_QUIT)
 	{
-		//sleep(3);
-
-		std::this_thread::sleep_for(std::chrono::milliseconds(MSEC_PER_TICK));
+		std::this_thread::sleep_for(std::chrono::milliseconds(settings->getMsecPerTick()));
 
 		curr_ticks = (curr_ticks + 1)%ticks_per_report;
 		

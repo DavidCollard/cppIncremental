@@ -2,9 +2,10 @@
 #define MAIN
 
 #include "AbstractCommand.h"
+#include "Settings.h"
 
 int main();
 //void test(exec_status*);
 
-void test(exec_status*, exec_status*, std::mutex*, std::condition_variable*);
+void test(Settings*, exec_status*, exec_status*, std::mutex*, std::condition_variable*);
 #endif
