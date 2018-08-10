@@ -13,7 +13,6 @@ void HelpCommand::printStatus()
 
 exec_status HelpCommand::execute()
 {
-	//AbstractCommand::execute(model);
 	std::cout << 	"This is the help dialog\n"
 			"Press h for help\n"
 			"Press q to quit" 

@@ -4,14 +4,14 @@
 #include "Node.h"
 
 
-Model::Model()
+Model::Model() : Model("default name")
 {
-	_name = "test name";
 }
 
 Model::Model(std::string name)
 {
 	_name = name;
+	_settings = new Settings();
 }
 
 Node* Model::getNode(std::string key)
@@ -43,6 +43,8 @@ std::string Model::getName()
 	return _name;
 }
 
-//unordered_map<std::string, Node*> _nodes;
-
+Settings* Model::getSettings()
+{
+	return _settings;
+}
 

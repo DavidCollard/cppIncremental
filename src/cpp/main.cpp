@@ -18,7 +18,6 @@ int main()
 {
 	// init game model
 	Model* model = new Model();
-	Settings settings;
 
 	exec_status p_status = EXEC_CONT;
 	exec_status t_status = EXEC_CONT;
@@ -26,7 +25,7 @@ int main()
 	// spawn thread to automatically update game model
 	std::mutex m;
 	std::condition_variable cv;
-	std::thread game_thread (test, &settings, &p_status, &t_status, &m, &cv);
+	std::thread game_thread (test, model, &p_status, &t_status, &m, &cv);
 
 	// input loop
 	std::string input;
@@ -78,7 +77,7 @@ int main()
 	return 0;
 }
 
-void test(Settings* settings, exec_status* p_status, exec_status* t_status, std::mutex* m, std::condition_variable* cv)
+void test(Model* model, exec_status* p_status, exec_status* t_status, std::mutex* m, std::condition_variable* cv)
 {
 	std::unique_lock<std::mutex> lk(*m);
 	
@@ -87,7 +86,7 @@ void test(Settings* settings, exec_status* p_status, exec_status* t_status, std:
 
 	while(*p_status != EXEC_QUIT)
 	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(settings->getMsecPerTick()));
+		std::this_thread::sleep_for(std::chrono::milliseconds(model->getSettings()->getMsecPerTick()));
 
 		curr_ticks = (curr_ticks + 1)%ticks_per_report;
 		

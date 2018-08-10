@@ -7,12 +7,14 @@
 #include "AbstractCommand.h"
 #include "HelpCommand.h"
 #include "InsertCommand.h"
+#include "ModifySettingCommand.h"
 #include "PrintNodesCommand.h"
 #include "QuitCommand.h"
 #include "UnknownCommand.h"
 
 const std::string reg_float = "([+-]?(?:(?:\\d+(?:\\.\\d*)?)|(?:\\.\\d+)))";
 const std::string reg_int = "([+-]?[0-9]+)";
+const std::string reg_str = "([^\\s]+)";
 
 AbstractCommand* processInput(std::string input)
 {
@@ -20,11 +22,10 @@ AbstractCommand* processInput(std::string input)
 	std::smatch base_match;	
 
 	const std::regex help_regex(" *[Hh] *");
-	const std::regex insert_regex(" *[Ii] *([^\\s]+) *");
+	const std::regex insert_regex(" *[Ii] *" + reg_str + " *");
 	const std::regex print_regex(" *[Pp] *");
 	const std::regex quit_regex(" *[Qq] *");
-	const std::regex int_test(reg_int);
-	const std::regex float_test(reg_float);
+	const std::regex setting_regex(" *[Ss] *" + reg_str + " *" + reg_int + " *");
 
 	if (std::regex_match(input, base_match, help_regex))
 	{
@@ -42,6 +43,12 @@ AbstractCommand* processInput(std::string input)
 	else if (std::regex_match(input, base_match, print_regex))
 	{
 		cmd = new PrintNodesCommand();
+	}
+	else if (std::regex_match(input, base_match, setting_regex))
+	{
+		std::string name = base_match[1];
+		int value = stoi(base_match[2]);
+		cmd = new ModifySettingCommand(name, value);
 	}
 	else
 	{
