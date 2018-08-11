@@ -25,7 +25,7 @@ AbstractCommand* processInput(std::string input)
 	const std::regex insert_regex(" *[Ii] *" + reg_str + " *");
 	const std::regex print_regex(" *[Pp] *");
 	const std::regex quit_regex(" *[Qq] *");
-	const std::regex setting_regex(" *[Ss] *" + reg_str + " *" + reg_int + " *");
+	const std::regex setting_regex(" *[Ss] * " + reg_str + "=" + reg_int + " *");
 
 	if (std::regex_match(input, base_match, help_regex))
 	{
