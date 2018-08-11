@@ -14,6 +14,11 @@ Model::Model(std::string name)
 	_settings = new Settings();
 }
 
+Model::~Model()
+{
+	delete _settings;
+}
+
 Node* Model::getNode(std::string key)
 {
 	return _nodes[key];
@@ -22,7 +27,6 @@ Node* Model::getNode(std::string key)
 void Model::addNode(std::string key, Node* node)
 {
 	_nodes[key] = node;
-	//_nodes.insert(key, node);
 }
 
 bool Model::removeNode(std::string key)
@@ -33,7 +37,7 @@ bool Model::removeNode(std::string key)
 	return true;
 }
 
-const std::unordered_map<std::string, Node*>* Model::getNodes()
+std::unordered_map<std::string, Node*>* Model::getNodes()
 {
 	return &_nodes;
 }

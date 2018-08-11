@@ -1,6 +1,6 @@
 #include "Settings.h"
 
-Settings::Settings() : Settings::Settings(200)
+Settings::Settings() : Settings::Settings(5000)
 {
 }
 

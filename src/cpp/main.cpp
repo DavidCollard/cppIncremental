@@ -13,11 +13,14 @@
 #include "ProcessInput.h"
 #include "Model.h"
 #include "Settings.h"
+#include "UpdateModel.h"
 
 int main()
 {
 	// init game model
 	Model* model = new Model();
+	
+	initModel(model);
 
 	exec_status p_status = EXEC_CONT;
 	exec_status t_status = EXEC_CONT;
@@ -77,6 +80,17 @@ int main()
 	return 0;
 }
 
+// put some data into a model
+void initModel(Model* model)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		Node* n = new Node(i, i, "Node " + std::to_string(i), 0, i);
+		model->addNode("Node " + std::to_string(i), n);
+	}
+}
+
+// thread method
 void test(Model* model, exec_status* p_status, exec_status* t_status, std::mutex* m, std::condition_variable* cv)
 {
 	std::unique_lock<std::mutex> lk(*m);
@@ -95,7 +109,10 @@ void test(Model* model, exec_status* p_status, exec_status* t_status, std::mutex
 			//std::cout << "lol" << std::endl;
 		}
 
-		if (*t_status == EXEC_PAUSE){
+		updateModel(model);
+
+		if (*t_status == EXEC_PAUSE)
+		{
 			cv->notify_one();
 			*p_status = EXEC_CONT;
 			while (*t_status == EXEC_PAUSE)
