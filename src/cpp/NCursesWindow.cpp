@@ -29,6 +29,9 @@ NCursesWindow::NCursesWindow()
 		init_pair(1, COLOR_RED, COLOR_BLACK);
 		init_pair(2, COLOR_YELLOW, COLOR_BLACK);
 	}
+
+	keypad(stdscr, TRUE);
+	curs_set(0);
 }
 
 NCursesWindow::~NCursesWindow()
@@ -63,15 +66,26 @@ std::string NCursesWindow::getString()
 
 	while (ch != '\n')
 	{
-		input.push_back(ch);
-		waddch(_cmd,ch);
+		if (ch == KEY_BACKSPACE)
+		{
+			if (input.size() > 0)
+			{
+				input.pop_back();	
+			}
+		}
+		else
+		{
+			input.push_back(ch);
+		}
+		werase(_cmd);
+		mvwprintw(_cmd, 0, 0, input.c_str());
 		wrefresh(_cmd);
-		ch = getch();	
+		ch = getch();
 	}
 
 	clearCmd();
 	printLog("> " + input);
-
+	refreshAll();
 	return input;
 }
 
