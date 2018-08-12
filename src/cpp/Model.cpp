@@ -29,9 +29,14 @@ void Model::addNode(std::string key, Node* node)
 	_nodes[key] = node;
 }
 
+bool Model::hasNode(std::string key)
+{
+	return _nodes.find(key) != _nodes.end();
+}
+
 bool Model::removeNode(std::string key)
 {
-	if (_nodes.find(key) == _nodes.end())
+	if (!hasNode(key))
 		return false;
 	_nodes.erase(key);
 	return true;

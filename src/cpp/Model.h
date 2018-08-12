@@ -16,6 +16,7 @@ public:
 	Node* getNode(std::string);
 	
 	void addNode(std::string, Node*);
+	bool hasNode(std::string);
 	bool removeNode(std::string);
 	std::unordered_map<std::string, Node*>* getNodes();
 	

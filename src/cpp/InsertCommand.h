@@ -14,6 +14,7 @@ public:
 	exec_status execute();
 	
 	std::string getStatus();
+	std::string getError();
 
 private:
 	std::string _code;

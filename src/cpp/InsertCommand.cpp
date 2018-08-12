@@ -16,9 +16,18 @@ std::string InsertCommand::getStatus()
 	return "Inserted node " + _code;
 }
 
+std::string InsertCommand::getError()
+{
+	return "Could not insert node " + _code;
+}
+
 exec_status InsertCommand::execute()
 {
 	Node* node = new Node(0, 0, _code);
+	if (_model->hasNode(_code))
+	{
+		return EXEC_ERR;
+	}
 	_model->addNode(_code, node);
 
 	return EXEC_CONT;
