@@ -8,7 +8,6 @@
 #include "HelpCommand.h"
 #include "InsertCommand.h"
 #include "ModifySettingCommand.h"
-#include "PrintNodesCommand.h"
 #include "QuitCommand.h"
 #include "UnknownCommand.h"
 
@@ -23,7 +22,6 @@ AbstractCommand* processInput(std::string input)
 
 	const std::regex help_regex(" *[Hh] *");
 	const std::regex insert_regex(" *[Ii] *" + reg_str + " *");
-	const std::regex print_regex(" *[Pp] *");
 	const std::regex quit_regex(" *[Qq] *");
 	const std::regex setting_regex(" *[Ss] * " + reg_str + "=" + reg_int + " *");
 
@@ -39,10 +37,6 @@ AbstractCommand* processInput(std::string input)
 	{
 		std::string code = base_match[1];
 		cmd = new InsertCommand(code);
-	}
-	else if (std::regex_match(input, base_match, print_regex))
-	{
-		cmd = new PrintNodesCommand();
 	}
 	else if (std::regex_match(input, base_match, setting_regex))
 	{

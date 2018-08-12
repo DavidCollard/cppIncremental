@@ -2,31 +2,24 @@
 #define ABSTRACTCOMMAND
 
 #include "Model.h"
-
-enum exec_status
-{
-	EXEC_CONT, // continue
-	EXEC_QUIT, // quit
-	EXEC_ERR,  // error
-	EXEC_WARN, // warning
-	EXEC_PAUSE, // pause process
-	EXEC_WAIT, // waiting
-	EXEC_NIMP, // not implemented
-};
+#include "exec_status.h"
 
 class AbstractCommand
 {
 public:
 	AbstractCommand();
 
-	virtual void printStatus();
+	//virtual void printStatus();
 	virtual exec_status execute();
-	virtual exec_status execute(Model*);
-	virtual void warning();
-	virtual void error();
+	exec_status execute(Model*);
+	
+	virtual std::string getStatus();
+	virtual std::string getWarning();
+	virtual std::string getError();
 
 private:
 	void printNoImpl(std::string fName);
+	std::string getNoImplStr(std::string);
 
 protected:
 	Model* _model;

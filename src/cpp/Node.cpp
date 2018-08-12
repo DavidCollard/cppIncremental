@@ -51,6 +51,11 @@ void Node::gainToMag()
 
 void Node::printStatus()
 {
-	std::cout << _name << " @" << _x << ":" << _y << " |" << _magnitude << "| += " << _gain << std::endl;
+	std::cout << getStatus() << std::endl;
+}
+
+std::string Node::getStatus()
+{
+	return std::string(_name + " @" + std::to_string(_x) + ":" + std::to_string(_y) + " |" + std::to_string(_magnitude) + "| += " + std::to_string(_gain));
 }
 

@@ -7,9 +7,14 @@ ModifySettingCommand::ModifySettingCommand(std::string name, int value) : Abstra
 	_value = value;
 }
 
-void ModifySettingCommand::printStatus()
+std::string ModifySettingCommand::getStatus()
 {
-	std::cout << "ModifySettingCommand printStatus" << std::endl;
+	return "Sucessfully set '" + _name + "' to " + std::to_string(_value);
+}
+
+std::string ModifySettingCommand::getError()
+{
+	return _name + " is not a valid option";
 }
 
 exec_status ModifySettingCommand::execute()

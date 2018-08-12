@@ -7,10 +7,11 @@ class UnknownCommand : public AbstractCommand
 {
 public:
 	UnknownCommand();
-	void printStatus();
 	exec_status execute();
-	void warning();
-	void error();
+	
+	std::string getStatus();
+	std::string getWarning();
+	std::string getError();
 private:
 	
 };

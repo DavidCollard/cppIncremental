@@ -17,6 +17,7 @@ public:
 	void gainToMag();
 
 	void printStatus();
+	std::string getStatus();
 
 private:
 	int _x, _y;

@@ -1,6 +1,6 @@
 CC=g++
 GCC_OPT = -O2 -Wall -Wextra -Werror -std=c++11
-GCC_LNK = -lpthread
+GCC_LNK = -lpthread -lncurses
 SRC_PATH = src/cpp/
 BIN = bin/
 

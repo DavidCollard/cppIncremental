@@ -8,8 +8,10 @@ class HelpCommand : public AbstractCommand
 {
 public:
 	HelpCommand();
-	void printStatus();
 	exec_status execute();
+	
+	std::string getStatus();
+
 private:
 	
 };

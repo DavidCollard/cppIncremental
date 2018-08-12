@@ -3,11 +3,12 @@
 
 #include "AbstractCommand.h"
 #include "Model.h"
+#include "NCursesWindow.h"
 
 int main();
 
 void initModel(Model*);
 
-void test(Model*, exec_status*, exec_status*, std::mutex*, std::condition_variable*);
+void test(Model*, NCursesWindow*, exec_status*, exec_status*, std::mutex*, std::condition_variable*);
 
 #endif

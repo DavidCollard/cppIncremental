@@ -14,12 +14,17 @@
 #include "Model.h"
 #include "Settings.h"
 #include "UpdateModel.h"
+#include "NCursesWindow.h"
 
 int main()
 {
+	// init window
+	NCursesWindow* window = new NCursesWindow();
+	
 	// init game model
 	Model* model = new Model();
 	
+	// seed game model
 	initModel(model);
 
 	exec_status p_status = EXEC_CONT;
@@ -28,14 +33,14 @@ int main()
 	// spawn thread to automatically update game model
 	std::mutex m;
 	std::condition_variable cv;
-	std::thread game_thread (test, model, &p_status, &t_status, &m, &cv);
+	std::thread game_thread (test, model, window, &p_status, &t_status, &m, &cv);
 
 	// input loop
 	std::string input;
 	bool quit = false;
 	while (!quit)
 	{
-		std::getline(std::cin, input);
+		input = window->getString();
 		AbstractCommand* cmd = processInput(input);
 
 		// pause update thread for duration of execute method
@@ -51,8 +56,8 @@ int main()
 		}
 
 		p_status = cmd->execute(model);
-
 		t_status = EXEC_CONT;
+
 		lk.unlock();
 		cv.notify_one();
 
@@ -61,13 +66,17 @@ int main()
 		{
 			quit = true;
 		}
+		else if (p_status == EXEC_CONT)
+		{
+			window->printLog(cmd->getStatus(), p_status);
+		}
 		else if (p_status == EXEC_WARN)
 		{
-			cmd->warning();
+			window->printLog(cmd->getWarning(), p_status);
 		}
 		else if (p_status == EXEC_ERR)
 		{
-			cmd->error();
+			window->printLog(cmd->getError(), p_status);
 		}
 	}
 
@@ -76,6 +85,7 @@ int main()
 
 	// clean up/save model
 	// TODO
+	delete window;
 
 	return 0;
 }
@@ -91,7 +101,7 @@ void initModel(Model* model)
 }
 
 // thread method
-void test(Model* model, exec_status* p_status, exec_status* t_status, std::mutex* m, std::condition_variable* cv)
+void test(Model* model, NCursesWindow* window, exec_status* p_status, exec_status* t_status, std::mutex* m, std::condition_variable* cv)
 {
 	std::unique_lock<std::mutex> lk(*m);
 	
@@ -109,7 +119,7 @@ void test(Model* model, exec_status* p_status, exec_status* t_status, std::mutex
 			//std::cout << "lol" << std::endl;
 		}
 
-		updateModel(model);
+		updateModel(model, window);
 
 		if (*t_status == EXEC_PAUSE)
 		{

@@ -6,9 +6,9 @@ UnknownCommand::UnknownCommand() : AbstractCommand()
 
 }
 
-void UnknownCommand::printStatus()
+std::string UnknownCommand::getStatus()
 {
-	std::cout << "UnknownCommand printStatus" << std::endl;
+	return "UnknownCommand printStatus";
 }
 
 exec_status UnknownCommand::execute ()
@@ -16,13 +16,13 @@ exec_status UnknownCommand::execute ()
 	return EXEC_ERR;
 }
 
-void UnknownCommand::warning()
+std::string UnknownCommand::getWarning()
 {
-	std::cout << "Provided command did not match any known commands. Use <H> for help" << std::endl;
+	return "W: Provided command did not match any known commands. Use <H> for help";
 }
 
-void UnknownCommand::error()
+std::string UnknownCommand::getError()
 {
-	std::cout << "Provided command did not match any known commands. Use <H> for help" << std::endl;
+	return "E: Provided command did not match any known commands. Use <H> for help";
 }
 

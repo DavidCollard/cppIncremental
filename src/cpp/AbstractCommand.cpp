@@ -5,14 +5,13 @@ AbstractCommand::AbstractCommand()
 {
 }
 
-void AbstractCommand::printStatus()
+std::string AbstractCommand::getStatus()
 {
-	printNoImpl("printStatus");
+	return getNoImplStr("getStatus");
 }
 
 exec_status AbstractCommand::execute()
 {
-	printNoImpl("execute");
 	return EXEC_NIMP;
 }
 
@@ -22,17 +21,17 @@ exec_status AbstractCommand::execute(Model* model)
 	return this->execute();
 }
 
-void AbstractCommand::warning()
+std::string AbstractCommand::getWarning()
 {
-	printNoImpl("warning");
+	return getNoImplStr("warning");
 }
 
-void AbstractCommand::error()
+std::string AbstractCommand::getError()
 {
-	printNoImpl("error");
+	return getNoImplStr("error");
 }
 
-void AbstractCommand::printNoImpl(std::string fName)
+std::string AbstractCommand::getNoImplStr(std::string fName)
 {
-	std::cout << "Virtual function '" << fName << "' not implemented" << std::endl;
+	return std::string("Virtual function '" + fName + "' not implemented");
 }
