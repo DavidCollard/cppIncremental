@@ -9,7 +9,6 @@ class AbstractCommand
 public:
 	AbstractCommand();
 
-	//virtual void printStatus();
 	virtual exec_status execute();
 	exec_status execute(Model*);
 	

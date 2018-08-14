@@ -24,10 +24,20 @@ public:
 
 	Settings* getSettings();
 
+	unsigned int getMaxNodes();
+	void incMaxNodes();
+
+	void addCurrency();
+	void subCurrnecy();
+	float getCurrency();
+
 private:
 	std::unordered_map<std::string, Node*> _nodes;
 	std::string _name;
 	Settings* _settings;
+
+	unsigned int _max_nodes;
+	float _currency;
 };
 
 #endif

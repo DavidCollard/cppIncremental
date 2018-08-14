@@ -19,7 +19,7 @@
 int main()
 {
 	// init window
-	NCursesWindow* window = new NCursesWindow();
+	NCursesWindow* window = NCursesWindow::getInstance();
 	
 	// init game model
 	Model* model = new Model();
@@ -93,11 +93,16 @@ int main()
 // put some data into a model
 void initModel(Model* model)
 {
+	/*
 	for (int i = 0; i < 10; i++)
 	{
 		Node* n = new Node(i, i, "Node " + std::to_string(i), 0, i);
 		model->addNode("Node " + std::to_string(i), n);
 	}
+	*/
+	const std::string homeip = "127.0.0.1";
+	Node* n = new Node(0, 0, homeip);
+	model->addNode(homeip, n);
 }
 
 // thread method

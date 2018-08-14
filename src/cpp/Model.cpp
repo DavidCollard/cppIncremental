@@ -12,6 +12,8 @@ Model::Model(std::string name)
 {
 	_name = name;
 	_settings = new Settings();
+	_currency = 5;
+	_max_nodes = 2;
 }
 
 Model::~Model()
@@ -26,7 +28,10 @@ Node* Model::getNode(std::string key)
 
 void Model::addNode(std::string key, Node* node)
 {
-	_nodes[key] = node;
+	if (_nodes.size() < _max_nodes)
+	{
+		_nodes[key] = node;
+	}
 }
 
 bool Model::hasNode(std::string key)
@@ -57,3 +62,12 @@ Settings* Model::getSettings()
 	return _settings;
 }
 
+unsigned int Model::getMaxNodes()
+{
+	return _max_nodes;
+}
+
+float Model::getCurrency()
+{
+	return _currency;
+}

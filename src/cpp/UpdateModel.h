@@ -6,8 +6,9 @@
 
 void updateModel(Model *, NCursesWindow *);
 
-void tickNodes(Model *, NCursesWindow *);
-
+void tickNodes(Model *);
 void tickNode(Node *);
+
+void refreshWindow(Model*, NCursesWindow*);
 
 #endif
