@@ -179,7 +179,9 @@ void NCursesWindow::printLog(std::string output, exec_status status)
 void NCursesWindow::printNodes(Node* node)
 {
 	wprintw(_nodes, (node->getName() + "\t").c_str());
-	wprintw(_nodes, (std::to_string(node->getMagnitude()) + "\t").c_str());
+	wprintw(_nodes, ("+" + std::to_string(node->getGain()) + "\t").c_str());
+	wprintw(_nodes, ("L" + std::to_string(node->getLevel()) + "\t").c_str());
+	wprintw(_nodes, ("C" + std::to_string(node->getUpgradeCost()) + "\t").c_str());
 	wprintw(_nodes, "\n");
 }
 

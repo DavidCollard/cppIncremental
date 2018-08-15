@@ -11,16 +11,14 @@ void updateModel(Model* model, NCursesWindow* window)
 void tickNodes(Model* model)
 {
 	auto nodes = model->getNodes();
+	float totalGain = 0;
 
 	for (auto it = nodes->begin(); it != nodes->end(); it++)
 	{
-		tickNode(it->second);
+		totalGain += it->second->getGain();
 	}
-}
 
-void tickNode(Node* node)
-{
-	node->gainToMag();
+	model->addCurrency(totalGain);
 }
 
 void refreshWindow(Model* model, NCursesWindow* window)

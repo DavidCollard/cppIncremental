@@ -27,8 +27,8 @@ public:
 	unsigned int getMaxNodes();
 	void incMaxNodes();
 
-	void addCurrency();
-	void subCurrnecy();
+	void addCurrency(float);
+	void subCurrency(float);
 	float getCurrency();
 
 private:

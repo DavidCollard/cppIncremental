@@ -10,6 +10,7 @@
 #include "ModifySettingCommand.h"
 #include "QuitCommand.h"
 #include "UnknownCommand.h"
+#include "UpgradeNodeCommand.h"
 
 const std::string reg_float = "([+-]?(?:(?:\\d+(?:\\.\\d*)?)|(?:\\.\\d+)))";
 const std::string reg_int = "([+-]?[0-9]+)";
@@ -24,6 +25,7 @@ AbstractCommand* processInput(std::string input)
 	const std::regex insert_regex(" *[Ii] *" + reg_str + " *");
 	const std::regex quit_regex(" *[Qq] *");
 	const std::regex setting_regex(" *[Ss] * " + reg_str + "=" + reg_int + " *");
+	const std::regex upgrade_regex(" *[Uu] * " + reg_str + " *");
 
 	if (std::regex_match(input, base_match, help_regex))
 	{
@@ -43,6 +45,11 @@ AbstractCommand* processInput(std::string input)
 		std::string name = base_match[1];
 		int value = stoi(base_match[2]);
 		cmd = new ModifySettingCommand(name, value);
+	}
+	else if (std::regex_match(input, base_match, upgrade_regex))
+	{
+		std::string code = base_match[1];
+		cmd = new UpgradeNodeCommand(code);
 	}
 	else
 	{

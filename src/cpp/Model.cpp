@@ -67,6 +67,16 @@ unsigned int Model::getMaxNodes()
 	return _max_nodes;
 }
 
+void Model::addCurrency(float curr)
+{
+	_currency += curr;
+}
+
+void Model::subCurrency(float curr)
+{
+	_currency -= curr;
+}
+
 float Model::getCurrency()
 {
 	return _currency;

@@ -3,27 +3,24 @@
 
 #include <string>
 
-class Node{
+class Node {
 public:
-	Node(int, int);
-	Node(int, int, std::string);
-	Node(int, int, std::string, float, float);
-	int getY();
-	int getX();
+	Node();
+	Node(std::string);
+	Node(std::string, float);
 	std::string getName();
-	float getMagnitude();
 	float getGain();
 
-	void gainToMag();
-
-	void printStatus();
 	std::string getStatus();
 
+	float getUpgradeCost();
+	void upgrade();
+	int getLevel();
+
 private:
-	int _x, _y;
 	std::string _name;
-	float _magnitude;
 	float _gain;
+	int _level;
 };
 
 #endif

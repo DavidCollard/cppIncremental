@@ -101,7 +101,7 @@ void initModel(Model* model)
 	}
 	*/
 	const std::string homeip = "127.0.0.1";
-	Node* n = new Node(0, 0, homeip);
+	Node* n = new Node(homeip, 1);
 	model->addNode(homeip, n);
 }
 
