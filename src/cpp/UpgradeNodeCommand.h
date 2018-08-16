@@ -1,8 +1,6 @@
 #ifndef UPGRADENODECOMMAND
 #define UPGRADENODECOMMAND
 
-#include <string>
-
 #include "Model.h"
 #include "AbstractCommand.h"
 

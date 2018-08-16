@@ -1,4 +1,3 @@
-#include <iostream>
 #include "QuitCommand.h"
 
 QuitCommand::QuitCommand() : AbstractCommand()
@@ -6,9 +5,9 @@ QuitCommand::QuitCommand() : AbstractCommand()
 
 }
 
-void QuitCommand::printStatus()
+std::string QuitCommand::getStatus()
 {
-	std::cout << "QuitCommand printStatus" << std::endl;
+	return "QuitCommand printStatus";
 }
 
 exec_status QuitCommand::execute()

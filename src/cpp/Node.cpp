@@ -1,7 +1,5 @@
 #include "Node.h"
 
-#include <iostream>
-
 Node::Node() : Node::Node(std::string())
 {
 }

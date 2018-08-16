@@ -1,9 +1,6 @@
 #ifndef MODIFYSETTINGCOMMAND
 #define MODIFYSETTINGCOMMAND
 
-#include <string>
-
-#include "Model.h"
 #include "AbstractCommand.h"
 
 class ModifySettingCommand : public AbstractCommand

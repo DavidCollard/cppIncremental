@@ -3,7 +3,6 @@
 
 #include <string>
 
-#include "Model.h"
 #include "AbstractCommand.h"
 
 class InsertCommand : public AbstractCommand

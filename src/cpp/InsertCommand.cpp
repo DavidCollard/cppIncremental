@@ -1,4 +1,3 @@
-#include <iostream>
 #include "InsertCommand.h"
 
 InsertCommand::InsertCommand() : AbstractCommand()
@@ -24,7 +23,7 @@ std::string InsertCommand::getError()
 exec_status InsertCommand::execute()
 {
 	Node* node = new Node(_code);
-	if (_model->hasNode(_code))
+	if (_model->hasNode(_code) || _model->getNodes()->size() >= _model->getMaxNodes())
 	{
 		return EXEC_ERR;
 	}

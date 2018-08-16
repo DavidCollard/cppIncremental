@@ -7,7 +7,7 @@ class QuitCommand : public AbstractCommand
 {
 public:
 	QuitCommand();
-	void printStatus();
+	std::string getStatus();
 	exec_status execute();
 private:
 	

@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <iostream>
 #include <string>
 #include <regex>
 
@@ -49,7 +47,7 @@ AbstractCommand* processInput(std::string input)
 	else if (std::regex_match(input, base_match, upgrade_regex))
 	{
 		std::string code = base_match[1];
-		int num = base_match.size() > 2 ? stoi(base_match[2]) : 1;
+		int num = base_match[2].str().empty() ? 1 : stoi(base_match[2]);
 		cmd = new UpgradeNodeCommand(code, num);
 	}
 	else

@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "UpdateModel.h"
 
 void updateModel(Model* model, NCursesWindow* window)

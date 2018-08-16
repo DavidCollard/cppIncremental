@@ -1,4 +1,3 @@
-#include <iostream>
 #include "AbstractCommand.h"
 
 AbstractCommand::AbstractCommand()

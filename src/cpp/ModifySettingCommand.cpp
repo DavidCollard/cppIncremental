@@ -1,4 +1,3 @@
-#include <iostream>
 #include "ModifySettingCommand.h"
 
 ModifySettingCommand::ModifySettingCommand(std::string name, int value) : AbstractCommand()
@@ -25,7 +24,6 @@ exec_status ModifySettingCommand::execute()
 	}
 	else
 	{
-		std::cout << _name << " is not a valid command" << std::endl;
 		return EXEC_ERR;
 	}
 

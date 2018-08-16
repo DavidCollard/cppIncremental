@@ -1,4 +1,3 @@
-#include <iostream>
 #include "UnknownCommand.h"
 
 UnknownCommand::UnknownCommand() : AbstractCommand()
