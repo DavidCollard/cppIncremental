@@ -34,13 +34,22 @@ std::string Node::getStatus()
 
 float Node::getUpgradeCost()
 {
-	// cheap exponent
-	return static_cast<float>(1 << _level);
+	return getUpgradeCost(1);
 }
 
-void Node::upgrade()
+float Node::getUpgradeCost(int amount)
 {
-	_level++;
+	// (1 << amount) - 1 = |amount| 1's
+	// represents |amount| levels of cost in the next line
+	int shift_amt = (1 << amount) - 1;
+
+	// cheap exponent - scales the amount of levels for the purchase
+	return static_cast<float>(shift_amt << _level);
+}
+
+void Node::upgrade(int amount)
+{
+	_level += amount;
 }
 
 int Node::getLevel()

@@ -9,7 +9,7 @@
 class UpgradeNodeCommand : public AbstractCommand
 {
 public:
-	UpgradeNodeCommand(std::string);
+	UpgradeNodeCommand(std::string, int);
 	exec_status execute();
 	
 	std::string getStatus();
@@ -17,7 +17,8 @@ public:
 	std::string getError();
 
 private:
-	std::string _code;	
+	std::string _code;
+	int _amount;
 };
 
 #endif

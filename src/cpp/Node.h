@@ -14,7 +14,8 @@ public:
 	std::string getStatus();
 
 	float getUpgradeCost();
-	void upgrade();
+	float getUpgradeCost(int);
+	void upgrade(int);
 	int getLevel();
 
 private:

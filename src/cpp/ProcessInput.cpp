@@ -25,7 +25,7 @@ AbstractCommand* processInput(std::string input)
 	const std::regex insert_regex(" *[Ii] *" + reg_str + " *");
 	const std::regex quit_regex(" *[Qq] *");
 	const std::regex setting_regex(" *[Ss] * " + reg_str + "=" + reg_int + " *");
-	const std::regex upgrade_regex(" *[Uu] * " + reg_str + " *");
+	const std::regex upgrade_regex(" *[Uu] * " + reg_str + " *" + reg_int + "? *");
 
 	if (std::regex_match(input, base_match, help_regex))
 	{
@@ -49,7 +49,8 @@ AbstractCommand* processInput(std::string input)
 	else if (std::regex_match(input, base_match, upgrade_regex))
 	{
 		std::string code = base_match[1];
-		cmd = new UpgradeNodeCommand(code);
+		int num = base_match.size() > 2 ? stoi(base_match[2]) : 1;
+		cmd = new UpgradeNodeCommand(code, num);
 	}
 	else
 	{
