@@ -22,7 +22,7 @@ std::string InsertCommand::getError()
 
 exec_status InsertCommand::execute()
 {
-	Node* node = new Node(_code);
+	Node* node = new Node(_code, 1);
 	if (_model->hasNode(_code) || _model->getNodes()->size() >= _model->getMaxNodes())
 	{
 		return EXEC_ERR;

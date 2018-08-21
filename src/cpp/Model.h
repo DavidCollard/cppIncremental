@@ -31,6 +31,9 @@ public:
 	void subCurrency(float);
 	float getCurrency();
 
+	float getExpandCost();
+	bool buyExpansion();
+
 private:
 	std::unordered_map<std::string, Node*> _nodes;
 	std::string _name;

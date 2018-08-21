@@ -7,8 +7,6 @@
 
 int main();
 
-void initModel(Model*);
-
 void test(Model*, NCursesWindow*, exec_status*, exec_status*, std::mutex*, std::condition_variable*);
 
 #endif

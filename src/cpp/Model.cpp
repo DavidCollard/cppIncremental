@@ -1,7 +1,6 @@
 #include "Model.h"
 #include "Node.h"
 
-
 Model::Model() : Model("default name")
 {
 }
@@ -10,8 +9,8 @@ Model::Model(std::string name)
 {
 	_name = name;
 	_settings = new Settings();
-	_currency = 5;
-	_max_nodes = 2;
+	_currency = 0;
+	_max_nodes = 1;
 }
 
 Model::~Model()
@@ -78,4 +77,21 @@ void Model::subCurrency(float curr)
 float Model::getCurrency()
 {
 	return _currency;
+}
+
+
+float Model::getExpandCost()
+{
+	return static_cast<float>(1 << (_max_nodes * 2));
+}
+
+bool Model::buyExpansion()
+{
+	if (getExpandCost() > _currency)
+	{
+		return false;
+	}
+	subCurrency(getExpandCost());
+	_max_nodes++;
+	return true;
 }

@@ -21,11 +21,10 @@ int main()
 	// init window
 	NCursesWindow* window = NCursesWindow::getInstance();
 	
+	window->printLog("Welcome. Press h for help. You should probably start by inserting a node :)");
+
 	// init game model
 	Model* model = new Model();
-	
-	// seed game model
-	initModel(model);
 
 	exec_status p_status = EXEC_CONT;
 	exec_status t_status = EXEC_CONT;
@@ -83,26 +82,10 @@ int main()
 	// stop thread
 	game_thread.join();
 
-	// clean up/save model
-	// TODO
+	// explicitly called
 	delete window;
 
 	return 0;
-}
-
-// put some data into a model
-void initModel(Model* model)
-{
-	/*
-	for (int i = 0; i < 10; i++)
-	{
-		Node* n = new Node(i, i, "Node " + std::to_string(i), 0, i);
-		model->addNode("Node " + std::to_string(i), n);
-	}
-	*/
-	const std::string homeip = "127.0.0.1";
-	Node* n = new Node(homeip, 1);
-	model->addNode(homeip, n);
 }
 
 // thread method
@@ -110,19 +93,9 @@ void test(Model* model, NCursesWindow* window, exec_status* p_status, exec_statu
 {
 	std::unique_lock<std::mutex> lk(*m);
 	
-	const int ticks_per_report = 10;
-	int curr_ticks = 0;
-
 	while(*p_status != EXEC_QUIT)
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(model->getSettings()->getMsecPerTick()));
-
-		curr_ticks = (curr_ticks + 1)%ticks_per_report;
-		
-		if (curr_ticks == 0)
-		{
-			//std::cout << "lol" << std::endl;
-		}
 
 		updateModel(model, window);
 

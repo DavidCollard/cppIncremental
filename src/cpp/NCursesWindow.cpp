@@ -187,7 +187,7 @@ void NCursesWindow::printNodes(Node* node)
 
 void NCursesWindow::printStatus(Model* model)
 {
-	wprintw(_status, (std::to_string(model->getCurrency()) + "\t").c_str());
+	wprintw(_status, ("Currency: " + std::to_string(model->getCurrency()) + "\t").c_str());
 	
 	if (has_colors() == TRUE)
 	{
@@ -214,6 +214,8 @@ void NCursesWindow::printStatus(Model* model)
 			wattroff(_status, COLOR_PAIR(1));
 		}
 	}
+
+	wprintw(_status, ("Xpd Cost: " + std::to_string(model->getExpandCost())).c_str());
 }
 
 NCursesWindow* NCursesWindow::getInstance()
