@@ -2,7 +2,7 @@
 #define MODEL
 
 #include <string>
-#include <unordered_map>
+#include <map>
 
 #include "Node.h"
 #include "Settings.h"
@@ -18,7 +18,7 @@ public:
 	void addNode(std::string, Node*);
 	bool hasNode(std::string);
 	bool removeNode(std::string);
-	std::unordered_map<std::string, Node*>* getNodes();
+	std::map<std::string, Node*>* getNodes();
 	
 	std::string getName();
 
@@ -35,7 +35,7 @@ public:
 	bool buyExpansion();
 
 private:
-	std::unordered_map<std::string, Node*> _nodes;
+	std::map<std::string, Node*> _nodes;
 	std::string _name;
 	Settings* _settings;
 
