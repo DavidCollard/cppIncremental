@@ -1,5 +1,7 @@
 # cppIncremental
 
+![Example screenshot](example.png)
+
 This is a simple console-based incremental game written in C++.
 It's not really meant to be super fun - it's designed moreso around providing a framework for developing more complex games. It uses a flexible underlying design that should allow for easy and relatively scalable development. It utilises some basic threading capabilities which can potentially provide excellent scaling depending on the data model implementation.
 
